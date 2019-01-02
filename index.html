@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="initial-scale=1.0">
+   <title>Live location</title>
+   <meta name="description" content="Live location">
+   <meta name="author" content="mainoramg">
+   <!--<link rel="stylesheet" href="css/styles.css">-->
+   <style>
+   /* Always set the map height explicitly to define the size of the div
+    * element that contains the map. */
+   #map {
+      height: 100%;
+   }
+   /* Optional: Makes the sample page fill the window. */
+   html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+   }
+   </style>
+</head>
+<body>
+   <!--<script src="js/scripts.js"></script>-->
+   <div id="map"></div>
+      <script>
+      function ConvertDMSToDD( degrees, minutes, seconds, direction )
+      {
+         var dd = degrees + minutes/60 + seconds/(60*60);
+         if (direction == "S" || direction == "W")
+         {
+            dd = dd * -1;
+         }
+         return dd;
+      }
+      var map;
+      function initMap() {
+         var car = "M17.402,0H5.643C2.526,0,0,3.467,0,6.584v34.804c0,3.116,2.526,5.644,5.643,5.644h11.759c3.116,0,5.644-2.527,5.644-5.644 V6.584C23.044,3.467,20.518,0,17.402,0z M22.057,14.188v11.665l-2.729,0.351v-4.806L22.057,14.188z M20.625,10.773 c-1.016,3.9-2.219,8.51-2.219,8.51H4.638l-2.222-8.51C2.417,10.773,11.3,7.755,20.625,10.773z M3.748,21.713v4.492l-2.73-0.349 V14.502L3.748,21.713z M1.018,37.938V27.579l2.73,0.343v8.196L1.018,37.938z M2.575,40.882l2.218-3.336h13.771l2.219,3.336H2.575z M19.328,35.805v-7.872l2.729-0.355v10.048L19.328,35.805z";
+         var carIcon = {
+            path: car,
+            scale: .7,
+            strokeColor: 'white',
+            strokeWeight: .10,
+            fillOpacity: 1,
+            fillColor: '#404040',
+            offset: '5%',
+            anchor: new google.maps.Point(10, 25) 
+         };
+         var carIcon2 = 
+         { // car icon
+            path: "M29.395,0H17.636c-3.117,0-5.643,3.467-5.643,6.584v34.804c0,3.116,2.526,5.644,5.643,5.644h11.759c3.116,0,5.644-2.527,5.644-5.644V6.584C35.037,3.467,32.511,0,29.395,0z M34.05,14.188v11.665l-2.729,0.351v-4.806L34.05,14.188zM32.618,10.773c-1.016,3.9-2.219,8.51-2.219,8.51H16.631l-2.222-8.51C14.41,10.773,23.293,7.755,32.618,10.773z M15.741,21.713v4.492l-2.73-0.349V14.502L15.741,21.713z M13.011,37.938V27.579l2.73,0.343v8.196L13.011,37.938z M14.568,40.882l2.218-3.336h13.771l2.219,3.336H14.568zM31.321,35.805v-7.872l2.729-0.355v10.048L31.321,35.805",
+            scale: 0.7,
+            fillColor: "#FF0000", //<-- Car Color, you can change it 
+            fillOpacity: 1,
+            strokeWeight: 1,
+            anchor: new google.maps.Point(0, 5),
+            rotation: 0 //<-- Car angle
+         };
+         map = new google.maps.Map(
+            document.getElementById('map'),
+            {
+               //center: {lat: -34.397, lng: 150.644},
+               center: { lat: ConvertDMSToDD(9, 59, 56.7, "N"), lng: ConvertDMSToDD(84, 11, 16.2, "W") },
+               zoom: 18
+            }
+         );
+         var uluru = { lat: ConvertDMSToDD(9, 59, 56.7, "N"), lng: ConvertDMSToDD(84, 11, 16.2, "W") };
+         var marker = new google.maps.Marker( { position: uluru, map: map, icon: carIcon2 } );
+         /*var latseconds = 50;
+         var lonseconds = 17;
+         setInterval(function(){
+            marker.setPosition( new google.maps.LatLng( ConvertDMSToDD(9, 59, latseconds, "N"), ConvertDMSToDD(84, 11, lonseconds, "W") ) );
+            latseconds = latseconds + 1;
+            lonseconds = lonseconds + 1;
+         }, 3*1000);*/
+      }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAP8_l5fVGIi457C0FnSssEm00h87B13rg&callback=initMap" async defer></script>
+</body>
+</html>
+
+
+
