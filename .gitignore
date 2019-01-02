@@ -86,3 +86,8 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+#Local Tomcat
+ROOT/
+WEB-INF/
+META-INF/
