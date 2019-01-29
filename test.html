@@ -7,6 +7,26 @@
    <meta name="description" content="Live location">
    <meta name="author" content="mainoramg">
    <style>
+   #header {
+      height: 20%;
+      width: 80%;
+      margin: 0 auto;
+      background-color: red;
+      padding: 20px 10px;
+      /*display: none;*/
+      position: absolute;;
+      left:10%;
+      top:0;
+      z-index: 100;
+   }
+   #flip {
+      height: 5%;
+      width: 5%;
+      position: absolute;
+      right: 0%;
+      bottom: -6%;
+      z-index: 100;
+   }
    /* Always set the map height explicitly to define the size of the div
     * element that contains the map. */
    #map {
@@ -21,6 +41,10 @@
    </style>
 </head>
 <body>
+   <div id="header">
+      <div class="content">Hola Mainor!</div>
+      <button id="flip" type="button">Click Me</button>
+   </div>
    <div id="map"></div>
    <script
    src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -79,10 +103,6 @@
          {
             sn = getVariableFromURL( "sn" );
          }
-         if( sn == null || sn == "0" || sn == "" )
-         {
-            sn = "9170670374";
-         }
          var carColor = "";//"#FF0000";
          if( carColor == null || carColor == "" )
          {
@@ -91,8 +111,8 @@
          var lngInitial    =  0;
          var latInitial    =  0;
          var angleInitial  =  0;
-         //$.get("http://localgps.mainor.com/v1/locationdd/now/sn/"+sn, {}, function(res,resp) {
-         $.get("http://gps.mainoramg.com/v1/locationdd/now/sn/"+sn, {}, function(res,resp) {
+         $.get("http://localgps.mainor.com/v1/locationdd/now/sn/"+sn, {}, function(res,resp) {
+         //$.get("http://gps.mainoramg.com/v1/locationdd/now/sn/"+sn, {}, function(res,resp) {
             
             if( validateCorrectData( res ) )
             {
@@ -131,8 +151,8 @@
          var lat = "";
          var angle = 0;
          setInterval(function(){
-            //$.get("http://localgps.mainor.com/v1/locationdd/now/sn/"+sn, {}, function(res,resp) {
-            $.get("http://gps.mainoramg.com/v1/locationdd/now/sn/"+sn, {}, function(res,resp) {
+            $.get("http://localgps.mainor.com/v1/locationdd/now/sn/"+sn, {}, function(res,resp) {
+            //$.get("http://gps.mainoramg.com/v1/locationdd/now/sn/"+sn, {}, function(res,resp) {
                if( validateCorrectData( res ) )
                {
                   lat = res.locations[0].latitude;
