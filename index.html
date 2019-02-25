@@ -89,17 +89,43 @@ body {
   position: absolute;
   right: 0;/*1%;*/
   top: 2.5em;
+  color: #3d3d3d;
+}
+.close:hover {
+  color: #3d3d3d;
 }
 .close img {
   width: 1em;
-
+}
+.close i {
+  width: 1em;
+}
+.close .close-arrow {
+  display: none;
+}
+.close .close-arrow.active {
+  display: block;
 }
 #nav-map{
    width: 5em;
 }
 #sidebarCollapse {
-   background-color: #f8f9fa;
+   background-color: #f2f2f2;
 }
+.navbar-brand {
+   padding: 1em 2em;
+}
+.navbar-brand img{
+   width: 6.5em;
+   margin-left: 1em;
+}
+.menu-icon{
+   font-size: 1em;
+   width: 1em;
+   margin: 0 0.5em;
+}
+
+
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
@@ -111,8 +137,8 @@ body {
     left: -250px;
     height: 100vh;
     z-index: 999;
-    background: #7386D5;
-    color: #fff;
+    background: #FFFFFF;
+    color: #3D3D3D;
     transition: all 0.3s;
     overflow-y: scroll;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
@@ -123,23 +149,24 @@ body {
 }
 
 #dismiss {
-    width: 35px;
-    height: 35px;
-    line-height: 35px;
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 1.5em;
+    font-size: 1.5em;
     text-align: center;
-    background: #7386D5;
+    color: #3D3D3D;
     position: absolute;
     top: 10px;
     right: 10px;
     cursor: pointer;
-    -webkit-transition: all 0.3s;
+    /*-webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
-    transition: all 0.3s;
+    transition: all 0.3s;*/
 }
 
 #dismiss:hover {
     background: #fff;
-    color: #7386D5;
+    color: #70ace2;
 }
 
 .overlay {
@@ -159,12 +186,13 @@ body {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #6d7fcc;
+    background: #FFFFFF;
 }
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+    border-top: 1px solid #3d3d3d;
+    border-bottom: 1px solid #3d3d3d;
 }
 
 #sidebar ul p {
@@ -174,19 +202,21 @@ body {
 
 #sidebar ul li a {
     padding: 10px;
-    font-size: 1.1em;
+    font-size: 1em;
     display: block;
+    color: 	#3d3d3d;
 }
 
 #sidebar ul li a:hover {
-    color: #7386D5;
+    color: #70ace2;
+    text-decoration: none;
     background: #fff;
 }
 
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
-    color: #fff;
-    background: #6d7fcc;
+    /*color: #fff;*/
+    /*background: #6d7fcc;*/
 }
 
 a[data-toggle="collapse"] {
@@ -251,16 +281,14 @@ a.article:hover {
       <nav id="sidebar">
    
             <div id="dismiss">
-               <i class="fas fa-arrow-left"></i>
+               <!--<i class="fas fa-arrow-left"></i>-->
+               <i class="fas fa-angle-double-left"></i>
             </div>
    
-            <div class="sidebar-header">
-               <h3>Bootstrap Sidebar</h3>
-            </div>
+            <a class="navbar-brand" href="#"><img src="/img/logo_small.png" alt="Rastreo GPS"></a>
    
             <ul class="list-unstyled components">
-               <p>Dummy Heading</p>
-               <li class="active">
+               <!--<li class="active">
                   <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
                   <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
@@ -288,12 +316,21 @@ a.article:hover {
                            <a href="#">Page 3</a>
                         </li>
                   </ul>
+               </li>-->
+               <li>
+                  <a href="#"><i class="menu-icon fas fa-fw fa-home"></i>Inicio</a>
+               </li>
+               <li class="active">
+                  <a href="#"><i class="menu-icon fas fa-fw fa-map-marker-alt"></i>Mapa</a>
                </li>
                <li>
-                  <a href="#">Portfolio</a>
+                  <a href="#"><i class="menu-icon fas fa-fw fa-user"></i>Mi cuenta</a>
                </li>
                <li>
-                  <a href="#">Contact</a>
+                  <a href="#"><i class="menu-icon fas fa-fw fa-phone"></i>Contacto</a>
+               </li>
+               <li>
+                  <a href="#"><i class="menu-icon fas fa-fw fa-sign-out-alt"></i>Cerrar sesión</a>
                </li>
             </ul>
       </nav>
@@ -315,7 +352,9 @@ a.article:hover {
             </nav>
             <!--<button type="button" class="close js-close">&#10006;</button>-->
             <a href="#" class="close js-close">
-               <img id="close-down" src="/img/drop_down_arrow.png" />
+               <!--<img id="close-down" src="/img/drop_down_arrow.png" />-->
+               <span class="close-arrow up active"><i class="fa fa-angle-up active"></i></span>
+               <span class="close-arrow down"><i class="fa fa-angle-down"></i></span>
             </a>
          </div>
          <div id="map">this is the map</div>
@@ -492,10 +531,14 @@ a.article:hover {
             if( $(".js-notice").hasClass( "active" ) )
             {
                $(".js-notice").removeClass( "active" );
+               $(".close-arrow.down").addClass( "active" );
+               $(".close-arrow.up").removeClass( "active" );
             }
             else
             {
                $(".js-notice").addClass( "active" );
+               $(".close-arrow.down").removeClass( "active" );
+               $(".close-arrow.up").addClass( "active" );
             }
          });
 
