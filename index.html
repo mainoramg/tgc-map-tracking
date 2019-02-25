@@ -94,6 +94,9 @@ body {
   width: 1em;
 
 }
+#nav-map{
+   width: 5em;
+}
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
@@ -296,12 +299,14 @@ a.article:hover {
       <div id="content">
             
          <div class="notice js-notice active">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav id="nav-map" class="navbar navbar-light bg-light">
                <div class="container-fluid">
    
-                  <button type="button" id="sidebarCollapse" class="btn btn-info">
-                        <i class="fas fa-align-left"></i>
-                        <span>Toggle Sidebar</span>
+                  <!--<button type="button" id="sidebarCollapse" class="btn btn-info">-->
+                  <button type="button" id="sidebarCollapse" class="navbar-toggler collapsed">
+                        
+                     <!--<i class="fas fa-bars"></i>-->
+                     <span class="navbar-toggler-icon"></span>
                   </button>
                </div>
             </nav>
