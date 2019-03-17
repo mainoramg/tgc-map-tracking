@@ -1,6 +1,44 @@
 body{
     background: #eee;
 }
+
+.navbar-default .navbar-brand{
+    color: #3d3d3d;
+}
+
+.navbar-default .navbar-toggle{
+    border-color: #3d3d3d;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus
+{
+    background-color: #ededed;
+}
+
+.navbar-default .navbar-toggle .icon-bar{
+    background-color: #3d3d3d;
+}
+
+.navbar-default .navbar-nav>li>a{
+    color: #3d3d3d;
+}
+
+.navbar-default .navbar-nav>li>a:hover{
+    color: #70ace2;
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:hover,
+.navbar-default .navbar-nav>.active>a:focus{
+    color: #70ace2;
+    background: #f7f7f7;
+}
+
+nav.navbar #navbar ul.nav.navbar-nav li a span.glyphicon {
+    margin-right: 0.5em;
+}
+
 .bottom-panel{
     position: fixed;
     bottom: -11em;
@@ -35,15 +73,26 @@ body{
 }
 
 .bottom-panel .more-options{
-    /*background: green;*/
+    background: #f7f7f7;
     /*padding: 0 2em;*/
     padding: 0;
     margin: 0;
 }
 
 .bottom-panel .more-options .row{
-    border-bottom: 0.5em solid #f7f7f7;
-    padding-bottom: 1em;
+    background: #ffffff;
+    /*border-bottom: 0.5em solid #f7f7f7;*/
+    border: 1px solid #f1f1f1;
+    margin-bottom: 0.5em;
+    /*padding-bottom: 1em;*/
+}
+
+.bottom-panel .more-options .row.first{
+    border-top: 0;
+}
+
+.bottom-panel .more-options .row.last{
+    border-bottom: 0;
 }
 
 .bottom-panel .more-options .section-options{
@@ -72,15 +121,17 @@ body{
     margin: 0;
     padding: 0;
     text-align: center;
-    font-size: 1em;
+    font-size: 1.2em;
+    font-weight: bold;
     color: #3d3d3d;
+    margin: 0.3em 0 0.5em 0;
 }
 
-.bottom-panel .more-options .section-options .section-title.left{
+/*.bottom-panel .more-options .section-options .section-title.left{
     padding: 0 0 0 2em;
     text-align: left;
     margin: 0.5em 0 1em 0;
-}
+}*/
 
 .bottom-panel .more-options .section-options .section-content{
     /*background: orange;*/
@@ -89,6 +140,7 @@ body{
     padding: 0;
     text-align: center;
     font-size: 1.2em;
+    font-weight: bold;
     color: #0e2b45;
 }
 
@@ -103,6 +155,23 @@ body{
 .bottom-panel .more-options .section-options .section-content img.maps{
     width: 2.9em;
     margin-top: 0.25em;
+}
+
+.bottom-panel .more-options .section-options .section-content span{
+    width: 100%;
+    float: left;
+    text-align: center;
+    font-size: 0.8em;
+    font-weight: normal;
+    color: #5a5a5a;
+}
+
+.bottom-panel .more-options .section-options .section-content span.waze{
+    margin-top: 0.37em;
+}
+
+.bottom-panel .more-options .section-options .section-content span.maps{
+    margin-top: 0.47em;
 }
 
 .bottom-panel .more-options .section-options .section-content.two-columns{
