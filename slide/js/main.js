@@ -42,6 +42,57 @@ function ConvertDMSToDD( degrees, minutes, seconds, direction )
    }
    return dd;
 }
+function translateDate( date )
+{
+   var arr = date.split( " " );
+   return date.replace( arr[0], translateMonth( arr[0] ) );
+}
+function translateMonth( month )
+{
+   var result = month;
+   switch( month )
+   {
+      case "January":
+         result = "Enero";
+         break;
+      case "February":
+         result = "Febrero";
+         break;
+      case "March":
+         result = "Marzo";
+         break;
+      case "April":
+         result = "Abril";
+         break;
+      case "May":
+         result = "Mayo";
+         break;
+      case "June":
+         result = "Junio";
+         break;
+      case "July":
+         result = "Julio";
+         break;
+      case "August":
+         result = "Agosto";
+         break;
+      case "September":
+         result = "Septiembre";
+         break;
+      case "October":
+         result = "Octubre";
+         break;
+      case "November":
+         result = "Noviembre";
+         break;
+      case "December":
+         result = "Diciembre";
+         break;
+      default:
+        text = month;
+   }
+   return result;
+}
 var map;
 var marker;
 function initMap() {
@@ -62,6 +113,9 @@ function initMap() {
    var lngInitial    =  0;
    var latInitial    =  0;
    var angleInitial  =  0;
+   var stampInitial  =  [];
+   var dateInitial   =  "";
+   var timeInitial   =  "";
    //$.get("http://localgps.mainor.com/v1/locationdd/now/sn/"+sn, {}, function(res,resp) {
    $.get("http://gps.mainoramg.com/v1/locationdd/now/sn/"+sn, {}, function(res,resp) {
       
@@ -70,9 +124,18 @@ function initMap() {
          latInitial     =  parseFloat(res.locations[0].latitude);
          lngInitial     =  parseFloat(res.locations[0].longitude);
          angleInitial   =  parseInt(res.locations[0].angle);
+         stampInitial   =  res.locations[0].stamp.split("-");
+         dateInitial    =  stampInitial[0];
+         timeInitial    =  stampInitial[1];
          console.log("latInitial="+latInitial);
          console.log("latInitial="+lngInitial);
          console.log("angleInitial="+angleInitial);
+         console.log("dateInitial="+dateInitial);
+         console.log("timeInitial="+timeInitial);
+
+         $( ".section-content.date" ).html( translateDate( dateInitial ) );
+         $( ".section-content.time" ).html( timeInitial );
+
          var carIconInitial = 
          { // car icon
             path: "M29.395,0H17.636c-3.117,0-5.643,3.467-5.643,6.584v34.804c0,3.116,2.526,5.644,5.643,5.644h11.759c3.116,0,5.644-2.527,5.644-5.644V6.584C35.037,3.467,32.511,0,29.395,0z M34.05,14.188v11.665l-2.729,0.351v-4.806L34.05,14.188zM32.618,10.773c-1.016,3.9-2.219,8.51-2.219,8.51H16.631l-2.222-8.51C14.41,10.773,23.293,7.755,32.618,10.773z M15.741,21.713v4.492l-2.73-0.349V14.502L15.741,21.713z M13.011,37.938V27.579l2.73,0.343v8.196L13.011,37.938z M14.568,40.882l2.218-3.336h13.771l2.219,3.336H14.568zM31.321,35.805v-7.872l2.729-0.355v10.048L31.321,35.805",
@@ -117,6 +180,9 @@ function initMap() {
    var lng = "";
    var lat = "";
    var angle = 0;
+   var stamp  =  [];
+   var date   =  "";
+   var time   =  "";
    setInterval(function(){
       //$.get("http://localgps.mainor.com/v1/locationdd/now/sn/"+sn, {}, function(res,resp) {
       $.get("http://gps.mainoramg.com/v1/locationdd/now/sn/"+sn, {}, function(res,resp) {
@@ -125,6 +191,13 @@ function initMap() {
             lat = res.locations[0].latitude;
             lng = res.locations[0].longitude;
             angle = parseInt(res.locations[0].angle);
+            stamp   =  res.locations[0].stamp.split("-");
+            date    =  stamp[0];
+            time    =  stamp[1];
+
+            $( ".section-content.date" ).html( translateDate( date ) );
+            $( ".section-content.time" ).html( time );
+
             var carIconUpdate = 
             { // car icon
                path: "M29.395,0H17.636c-3.117,0-5.643,3.467-5.643,6.584v34.804c0,3.116,2.526,5.644,5.643,5.644h11.759c3.116,0,5.644-2.527,5.644-5.644V6.584C35.037,3.467,32.511,0,29.395,0z M34.05,14.188v11.665l-2.729,0.351v-4.806L34.05,14.188zM32.618,10.773c-1.016,3.9-2.219,8.51-2.219,8.51H16.631l-2.222-8.51C14.41,10.773,23.293,7.755,32.618,10.773z M15.741,21.713v4.492l-2.73-0.349V14.502L15.741,21.713z M13.011,37.938V27.579l2.73,0.343v8.196L13.011,37.938z M14.568,40.882l2.218-3.336h13.771l2.219,3.336H14.568zM31.321,35.805v-7.872l2.729-0.355v10.048L31.321,35.805",
@@ -144,6 +217,8 @@ function initMap() {
             console.log("lat="+lat);
             console.log("lat="+lng);
             console.log("angle="+angle);
+            console.log("date="+date);
+            console.log("time="+time);
          }
       }, "json");
    }, 4*1000);
